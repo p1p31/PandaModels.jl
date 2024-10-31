@@ -14,7 +14,7 @@ function run_powermodels_pf(json_path)
             pm,
             model,
             solver,
-            setting = Dict("output" => Dict("branch_flows" => true)),
+            setting = Dict("output" => Dict("branch_flows" => true, "duals" => true)),
         )
     end
 
@@ -48,7 +48,7 @@ function run_powermodels_opf(json_path)
             pm,
             model,
             solver,
-            setting = Dict("output" => Dict("branch_flows" => true)),
+            setting = Dict("output" => Dict("branch_flows" => true, "duals" => true)),
         )
     else
 
@@ -94,7 +94,7 @@ function run_powermodels_tnep(json_path)
         pm,
         model,
         solver,
-        setting = Dict("output" => Dict("branch_flows" => true)),
+        setting = Dict("output" => Dict("branch_flows" => true, "duals" => true)),
     )
     return result
 end
@@ -111,7 +111,7 @@ function run_powermodels_ots(json_path)
         pm,
         model,
         solver,
-        setting = Dict("output" => Dict("branch_flows" => true)),
+        setting = Dict("output" => Dict("branch_flows" => true, "duals" => true)),
     )
     return result
 end
@@ -125,7 +125,7 @@ function run_powermodels_multi_storage(json_path)
     mn = set_pq_values_from_timeseries(pm)
 
     result = _PM.solve_mn_opf_strg(mn, model, solver,
-        setting = Dict("output" => Dict("branch_flows" => true)),
+        setting = Dict("output" => Dict("branch_flows" => true, "duals" => true)),
     )
     return result
 end
